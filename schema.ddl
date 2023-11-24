@@ -33,12 +33,19 @@ CREATE TABLE people (
     phone VARCHAR(255) NOT NULL UNIQUE
 );
 
+-- Recording Engineer Table
+-- Store all recording engineer
+CREATE TABLE engineer (
+    engineer_id INTEGER PRIMARY KEY,
+    FOREIGN KEY (engineer_id) REFERENCES people(person_id)
+)
+
 -- Engineer_certifications Table
 -- Associates recording engineers with their respective certifications
 CREATE TABLE engineer_certifications (
     person_id INTEGER NOT NULL,
     certification_name VARCHAR(255) NOT NULL,
-    FOREIGN KEY (person_id) REFERENCES people(person_id),
+    FOREIGN KEY (person_id) REFERENCES engineer(engineer_id),
     PRIMARY KEY (person_id, certification_name)
 );
 
@@ -50,7 +57,7 @@ CREATE TABLE session_engineers (
     session_id INTEGER NOT NULL,
     engineer_id INTEGER NOT NULL,
     FOREIGN KEY (session_id) REFERENCES recording_sessions(session_id),
-    FOREIGN KEY (engineer_id) REFERENCES people(person_id),
+    FOREIGN KEY (engineer_id) REFERENCES engineer(engineer_id),
     PRIMARY KEY (session_id, engineer_id)
 );
 
