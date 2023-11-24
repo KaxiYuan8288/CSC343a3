@@ -7,7 +7,7 @@ SET search_path TO recording;
 CREATE TABLE studios (
     studio_id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    address TEXT NOT NULL,
+    address TEXT NOT NULL
 );
 
 -- Recording Sessions Table
@@ -20,7 +20,7 @@ CREATE TABLE recording_sessions (
     start_time TIMESTAMP NOT NULL,
     end_time TIMESTAMP NOT NULL,
     session_fee NUMERIC NOT NULL,
-    FOREIGN KEY (studio_id) REFERENCES studios(studio_id)
+    FOREIGN KEY (studio_id) REFERENCES studios(studio_id),
     UNIQUE (studio_id, start_time)
 );
 
@@ -38,7 +38,7 @@ CREATE TABLE people (
 CREATE TABLE engineer (
     engineer_id INTEGER PRIMARY KEY,
     FOREIGN KEY (engineer_id) REFERENCES people(person_id)
-)
+);
 
 -- Engineer_certifications Table
 -- Associates recording engineers with their respective certifications
@@ -163,5 +163,5 @@ CREATE TABLE studio_management_history (
     FOREIGN KEY (studio_id) REFERENCES studios(studio_id),
     FOREIGN KEY (manager_id) REFERENCES people(person_id),
     PRIMARY KEY (studio_id, manager_id, start_date),
-    UNIQUE (studio_id, start_date),
+    UNIQUE (studio_id, start_date)
 );
