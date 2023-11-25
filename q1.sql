@@ -1,10 +1,13 @@
 SET search_path TO recording;
+DROP TABLE IF EXISTS q1 CASCADE;
 
 CREATE TABLE q1 (
     studio_id INTEGER NOT NULL,
     manager_name VARCHAR(255) NOT NULL,
     num_album INTEGER NOT NULL
 );
+
+DROP VIEW IF EXISTS current_manager, album_contribution;
 
 CREATE VIEW current_manager AS
 SELECT
