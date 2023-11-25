@@ -24,6 +24,12 @@ UNION
 (SELECT engineer_id AS person_id, se.session_id FROM session_engineers se);
 
 INSERT INTO q2(person_id, session_count)
-SELECT COUNT(distinct session_id)
-FROM session_person
-GROUP BY person_id;
+SELECT
+    p.person_id,
+    COALESCE(sp.session_count, 0)
+FROM people p
+LEFT JOIN (
+    SELECT person_id, COUNT(DISTINCT session_id) AS session_count
+    FROM session_person
+    GROUP BY person_id
+) sp ON p.person_id = sp.person_id;
