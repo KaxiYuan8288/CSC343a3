@@ -6,7 +6,7 @@ CREATE TABLE q3 (
     name VARCHAR(255) NOT NULL
 );
 
-DROP VIEW IF EXISTS session_length, max_individual, max_group;
+DROP VIEW IF EXISTS session_length, max_individual, max_group, max_combined;
 
 CREATE VIEW session_length AS
     SELECT SUM(length) AS session_length, session_id
@@ -26,7 +26,7 @@ CREATE VIEW max_group AS
     JOIN band_members m ON m.band_id = b.band_id
     WHERE l.session_length = (SELECT MAX(session_length) FROM session_length);
 
-CREATE VIEW combined_max AS
+CREATE VIEW max_combined AS
     SELECT member_id AS id
     FROM max_group_session
 
@@ -38,7 +38,7 @@ CREATE VIEW combined_max AS
 INSERT INTO q3(person_id, name)
 SELECT
     p.person_id, p.name
-FROM combined_max c
+FROM max_combined c
 JOIN people p
 ON c.id = p.person_id;
 
