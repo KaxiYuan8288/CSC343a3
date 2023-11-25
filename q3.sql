@@ -35,7 +35,7 @@ CREATE VIEW combined_max AS
     SELECT person_id AS id
     FROM max_individual_session;
 
-INSERT INTO q1(person_id, name)
+INSERT INTO q3(person_id, name)
 SELECT
     p.person_id, p.name
 FROM combined_max c
