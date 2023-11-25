@@ -27,7 +27,7 @@ CREATE TABLE recording_sessions (
 -- People Table
 -- Person_id, name, email, and phone number of that person
 CREATE TABLE people (
-    person_id SERIAL PRIMARY KEY,
+    person_id INTEGER PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     phone VARCHAR(255) NOT NULL UNIQUE
@@ -162,6 +162,5 @@ CREATE TABLE studio_management_history (
     start_date DATE NOT NULL,
     FOREIGN KEY (studio_id) REFERENCES studios(studio_id),
     FOREIGN KEY (manager_id) REFERENCES people(person_id),
-    PRIMARY KEY (studio_id, manager_id, start_date),
-    UNIQUE (studio_id, start_date)
+    PRIMARY KEY (studio_id, start_date)
 );
