@@ -46,3 +46,5 @@ FROM current_manager c
 JOIN album_contribution a
 ON c.studio_id = a.studio_id;
 
+SELECT *
+FROM q1;

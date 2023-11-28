@@ -1,3 +1,32 @@
+/*
+Part 2 Documentation
+Could not: 1.Each session has at most 3 recording engineer.
+
+Did not: 1.Each session has at least one recording engineer.
+           Instead of having the session-engineer table, we could introduce an recording engineer attribute.
+           This will introduce redundancy as one session could have multiple recording engineer.
+         2.Each band has at least one person in it.
+           Same reason as above. It will introduce redundancy as one band could have multiple members.
+         3.Each track appears on at least one album.
+           Same reason as above. It will introduce redundancy as one track may appears on multiple albums.
+         4.Each album contains at least two tracks.
+           We could introduce two additional attributes in album table: first track & second track.
+           This will introduce redundancy as the information of the first two tracks are stored in both album and album-track table
+         5.Each session has at least one person playing.
+           We could introduce an additional player attribute in session table, all players in the band will be recorded.
+           This will introduce redundancy as each session could have multiple players.
+           This will also introduce updates anomalies as band members updates will affect two tables.
+Extra constraints: None.
+Assumptions: 1.Any individual person can be manager or player (no certification needed).
+             2.An individual can have multiple roles (e.g., they can be both recording engineer and manager).
+             3.An player can be member of multiple bands
+             4.An individual can participate one session with multiple role
+               (e.g., they can be a individual player, a band member, and a recording engineer in one single session).
+             5.Studios do not have capacity limit (i.e., there could be multiple sessions overlap)
+             6.A manager can manage multiple studios at one time.
+ */
+
+
 DROP SCHEMA IF EXISTS recording CASCADE;
 CREATE SCHEMA recording;
 SET search_path TO recording;

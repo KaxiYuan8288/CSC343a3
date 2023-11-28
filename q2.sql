@@ -6,7 +6,7 @@ CREATE TABLE q2 (
     session_count INTEGER NOT NULL
 );
 
-DROP VIEW IF EXISTS session_band_members, session_person
+DROP VIEW IF EXISTS session_band_members, session_person;
 
 CREATE VIEW session_band_members AS
 SELECT
@@ -33,3 +33,6 @@ LEFT JOIN (
     FROM session_person
     GROUP BY person_id
 ) sp ON p.person_id = sp.person_id;
+
+SELECT *
+FROM q2;

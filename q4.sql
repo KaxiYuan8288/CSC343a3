@@ -62,3 +62,6 @@ FROM most_combined m
 JOIN albums a ON a.album_id = m.album_id
 JOIN require_most_sessions r ON r.album_id = m.album_id;
 
+SELECT *
+FROM q4;
+

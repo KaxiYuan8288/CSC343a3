@@ -28,12 +28,12 @@ CREATE VIEW max_group AS
 
 CREATE VIEW max_combined AS
     SELECT member_id AS id
-    FROM max_group_session
+    FROM max_group
 
     UNION
 
     SELECT person_id AS id
-    FROM max_individual_session;
+    FROM max_individual;
 
 INSERT INTO q3(person_id, name)
 SELECT
@@ -41,4 +41,7 @@ SELECT
 FROM max_combined c
 JOIN people p
 ON c.id = p.person_id;
+
+SELECT *
+FROM q3;
 
